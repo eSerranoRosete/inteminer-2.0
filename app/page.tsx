@@ -37,7 +37,7 @@ export default async function Home() {
   );
 }
 
-export const UserCountCard = async () => {
+const UserCountCard = async () => {
   const count = await getUserCount();
 
   const available = 10;
