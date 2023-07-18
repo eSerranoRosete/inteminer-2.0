@@ -17,21 +17,14 @@ import { Suspense } from "react";
 export default async function Home() {
   return (
     <>
-      <Sidebar />
-      <Content>
-        <div className="w-full">
-          <header>
-            <h2 className="text-3xl font-semibold mb-5">Dashboard</h2>
-            <Separator className="mb-10" />
-          </header>
-          <Link href="/team">
-            <Suspense
-              fallback={<Skeleton className="w-full max-w-xs h-24"></Skeleton>}
-            >
-              <UserCountCard />
-            </Suspense>
-          </Link>
-        </div>
+      <Content title="Dashboard">
+        <Link href="/team">
+          <Suspense
+            fallback={<Skeleton className="w-full max-w-xs h-24"></Skeleton>}
+          >
+            <UserCountCard />
+          </Suspense>
+        </Link>
       </Content>
     </>
   );

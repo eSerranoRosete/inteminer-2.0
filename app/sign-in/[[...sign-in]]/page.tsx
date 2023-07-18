@@ -46,10 +46,10 @@ export default function Page() {
           await setActive({
             session: result.createdSessionId,
           });
-          setIsPending(false);
           router.push("/");
         }
       } catch (error) {
+        setIsPending(false);
         console.log(error);
       }
     };
@@ -57,10 +57,8 @@ export default function Page() {
   };
 
   return (
-    <main className="w-full min-h-screen flex items-center justify-center">
-      <Card className="w-full max-w-md relative bg-background/50 ">
-        <div className="w-52 h-52 rounded-full bg-indigo-500/50 absolute top-0 left-0 -z-10 blur-3xl" />
-        <div className="w-52 h-52 rounded-full bg-violet-500/50 absolute bottom-0 right-0 -z-10 blur-3xl" />
+    <main className="w-full flex items-center justify-center">
+      <Card className="w-full max-w-md relative bg-background ">
         <CardHeader className="text-center">
           <CardTitle>Welcome back</CardTitle>
           <CardDescription>
@@ -68,24 +66,30 @@ export default function Page() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form action={submit} className="grid gap-4">
-            <Input
-              disabled={isPending}
-              id="email"
-              name="email"
-              type="email"
-              className="mt-2"
-              placeholder="Email address"
-            />
+          <form action={submit} className="grid mt-10 gap-4">
+            <Label>
+              Email
+              <Input
+                disabled={isPending}
+                type="email"
+                id="email"
+                name="email"
+                className="mt-2"
+                placeholder="Email address"
+              />
+            </Label>
 
-            <Input
-              disabled={isPending}
-              id="password"
-              name="password"
-              type="password"
-              className="mt-2"
-              placeholder="Password"
-            />
+            <Label>
+              Password
+              <Input
+                disabled={isPending}
+                id="password"
+                type="password"
+                name="password"
+                placeholder="Password"
+                className="mt-2"
+              />
+            </Label>
 
             <Button disabled={isPending} className="mt-5">
               Sign in

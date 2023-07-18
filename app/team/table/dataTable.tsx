@@ -13,7 +13,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -34,6 +34,9 @@ import { AddUserDialog } from "@/components/application/AddUserDialog";
 import { columns } from "./columns";
 import { User } from "@/lib/server-actions/users/UserTypes";
 import { useState } from "react";
+import Link from "next/link";
+import { cn } from "@/lib/utils";
+import { PlusCircle } from "lucide-react";
 
 type DataTableDemoProps = {
   data: User[];
@@ -66,7 +69,7 @@ export function DataTableDemo({ data }: DataTableDemoProps) {
 
   return (
     <div className="w-full">
-      <div className="flex items-center py-4 gap-4">
+      <div className="flex items-center pb-4 gap-4">
         <Input
           placeholder="Filter emails..."
           value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
@@ -100,7 +103,16 @@ export function DataTableDemo({ data }: DataTableDemoProps) {
               })}
           </DropdownMenuContent>
         </DropdownMenu>
-        <AddUserDialog />
+        <Link
+          href="/team/create"
+          className={cn(
+            buttonVariants({ variant: "default", size: "sm" }),
+            "shrink-0 gap-2"
+          )}
+        >
+          <PlusCircle className="w-4" />
+          Create User
+        </Link>
       </div>
       <div className="rounded-md border">
         <Table>

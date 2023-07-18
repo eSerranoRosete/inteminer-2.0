@@ -8,11 +8,17 @@ type SidebarItemProps = {
   href: string;
   icon: React.ReactNode;
   label: string;
+  isChild?: boolean;
 };
 
-export const SidebarItem = ({ href, icon, label }: SidebarItemProps) => {
+export const SidebarItem = ({
+  href,
+  icon,
+  label,
+  isChild,
+}: SidebarItemProps) => {
   const pathname = usePathname();
-  const active = pathname === href;
+  const active = isActive(pathname, href, isChild);
 
   return (
     <Link
@@ -28,4 +34,15 @@ export const SidebarItem = ({ href, icon, label }: SidebarItemProps) => {
       )}
     </Link>
   );
+};
+
+const isActive = (pathname: string, href: string, isChild?: boolean) => {
+  if (isChild) {
+    return pathname.includes(href);
+  }
+
+  const rootPathname = pathname.split("/")[1];
+  const rootHref = href.split("/")[1];
+
+  return rootPathname === rootHref;
 };

@@ -30,11 +30,13 @@ export const SidebarItemParent = ({ icon, label }: SidebarItemProps) => {
               icon={<MapIcon className="w-5" />}
               label="Manage Locations"
               href="/mortgage-quoter/locations"
+              isChild
             />
             <SidebarItem
               icon={<BarChart2 className="w-5" />}
               label="Usage"
               href="/mortgage-quoter/usage"
+              isChild
             />
           </div>
         </AccordionContent>
